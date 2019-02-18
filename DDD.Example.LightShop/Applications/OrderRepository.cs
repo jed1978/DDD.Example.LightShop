@@ -12,13 +12,21 @@ namespace DDD.Example.LightShop.Applications
 
         public void Save(Order order)
         {
-            _repository.TryAdd(order.Id, new Dictionary<long, OrderCreatedEvent>());
-            foreach (var @event in order.UncommittedChanges())
+            try
             {
-                _repository[order.Id][@event.Id] = @event;
-            }
+                _repository.TryAdd(order.Id, new Dictionary<long, OrderCreatedEvent>());
+                foreach (var @event in order.UncommittedChanges())
+                {
+                    _repository[order.Id][@event.Id] = @event;
+                }
 
-            order.Commit();
+                order.Commit();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         public Order Load(Guid id)
