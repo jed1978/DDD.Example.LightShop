@@ -17,12 +17,9 @@ namespace DDD.Example.LightShop.Tests.Applications
             //Given
             var aggregateRootId = Guid.NewGuid();
 
-            var createOrderCommand = CreateOrderCommand.Prepare(aggregateRootId,
-                Product.Prepare(1001, "Apple Mac Book Pro 13 inch no touchbar", 1, 43900),
-                ShippingInfo.Prepare("Jed", "0988123123", "Home address"));
-            
             var order = Order.Prepare(aggregateRootId);
-            order.Create(createOrderCommand);
+            order.Create(aggregateRootId, Product.Prepare(1001, "Apple Mac Book Pro 13 inch no touchbar", 1, 43900),
+                ShippingInfo.Prepare("Jed", "0988123123", "Home address"));
 
             var orderRepository = new OrderRepository();
             

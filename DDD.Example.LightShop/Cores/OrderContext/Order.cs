@@ -21,10 +21,10 @@ namespace DDD.Example.LightShop.Cores.OrderContext
             Id = aggregateRootId;
         }
 
-        public void Create(CreateOrderCommand createOrderCommand)
+        public void Create(Guid aggregateRootId, Product product, ShippingInfo shippingInfo)
         {
-            ApplyChange(OrderCreatedEvent.Occured(createOrderCommand.AggregateRootId, createOrderCommand.Product,
-                createOrderCommand.ShippingInfo));
+            ApplyChange(OrderCreatedEvent.Occured(aggregateRootId, product,
+                shippingInfo));
         }
 
         protected override void ApplyChange(OrderCreatedEvent orderCreatedEvent, bool isRebuild = false)

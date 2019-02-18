@@ -22,8 +22,6 @@ namespace DDD.Example.LightShop.Tests.Cores
             var product = Product.Prepare(1001, "Apple Mac Book Pro 13 inch no touchbar", 1, 43900);
             var shippingInfo = ShippingInfo.Prepare("Jed", "0988123123", "Home address");
 
-            var createOrderCommand = CreateOrderCommand.Prepare(aggregateRootId, product, shippingInfo);
-
             var order = Order.Prepare(aggregateRootId);
 
             var expected = new List<OrderCreatedEvent>
@@ -32,11 +30,11 @@ namespace DDD.Example.LightShop.Tests.Cores
             };
 
             //When
-            order.Create(createOrderCommand);
-            var changes = order.UncommittedChanges();
+            order.Create(aggregateRootId, product, shippingInfo);
+
 
             //Then
-            changes.Should().BeEquivalentTo(expected);
+            order.UncommittedChanges().Should().BeEquivalentTo(expected);
             order.UncommittedChanges().Count.Should().Be(1);
         }
 
