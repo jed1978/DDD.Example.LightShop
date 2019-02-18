@@ -14,7 +14,7 @@ namespace DDD.Example.LightShop.Tests.Cores
     public class OrderTests
     {
         [Test]
-        public void CreateOrder_MBP13_Succeed()
+        public void Test_CreateOrder_MBP13_Succeed()
         {
             //Given
             var aggregateRootId = Guid.NewGuid();
@@ -39,7 +39,7 @@ namespace DDD.Example.LightShop.Tests.Cores
         }
 
         [Test]
-        public void RebuildOrderFromHistory()
+        public void Test_RebuildOrderFromHistory_Succeed()
         {
             var aggregateRootId = Guid.NewGuid();
 
