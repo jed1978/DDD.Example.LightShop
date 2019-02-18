@@ -1,5 +1,5 @@
 using System;
-using DDD.Example.LightShop.Cores.OrderDomain;
+using DDD.Example.LightShop.Cores.OrderContext;
 
 namespace DDD.Example.LightShop.Cores.Events
 {
@@ -16,7 +16,7 @@ namespace DDD.Example.LightShop.Cores.Events
             ShippingInfo = shippingInfo;
         }
 
-        public static OrderCreatedEvent Prepare(Guid aggregateRootId, Product product, ShippingInfo shippingInfo)
+        public static OrderCreatedEvent Occured(Guid aggregateRootId, Product product, ShippingInfo shippingInfo)
         {
             return new OrderCreatedEvent(aggregateRootId, product, shippingInfo);
         }

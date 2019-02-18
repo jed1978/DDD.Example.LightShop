@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using DDD.Example.LightShop.Cores.Events;
 
-namespace DDD.Example.LightShop.Cores.OrderDomain
+namespace DDD.Example.LightShop.Cores.OrderContext
 {
     public class Order : AggregateRoot<OrderCreatedEvent>
     {
@@ -23,7 +23,7 @@ namespace DDD.Example.LightShop.Cores.OrderDomain
 
         public void Create(CreateOrderCommand createOrderCommand)
         {
-            ApplyChange(OrderCreatedEvent.Prepare(createOrderCommand.AggregateRootId, createOrderCommand.Product,
+            ApplyChange(OrderCreatedEvent.Occured(createOrderCommand.AggregateRootId, createOrderCommand.Product,
                 createOrderCommand.ShippingInfo));
         }
 

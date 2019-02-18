@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using DDD.Example.LightShop.Applications;
 using DDD.Example.LightShop.Cores.Events;
-using DDD.Example.LightShop.Cores.OrderDomain;
+using DDD.Example.LightShop.Cores.OrderContext;
 using FluentAssertions;
 using NUnit.Framework;
 

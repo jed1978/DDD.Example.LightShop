@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DDD.Example.LightShop.Cores;
 using DDD.Example.LightShop.Cores.Events;
-using DDD.Example.LightShop.Cores.OrderDomain;
+using DDD.Example.LightShop.Cores.OrderContext;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -28,7 +28,7 @@ namespace DDD.Example.LightShop.Tests.Cores
 
             var expected = new List<OrderCreatedEvent>
             {
-                OrderCreatedEvent.Prepare(aggregateRootId, product, shippingInfo)
+                OrderCreatedEvent.Occured(aggregateRootId, product, shippingInfo)
             };
 
             //When
@@ -47,7 +47,7 @@ namespace DDD.Example.LightShop.Tests.Cores
 
             var historicalEvents = new List<OrderCreatedEvent>
             {
-                OrderCreatedEvent.Prepare(aggregateRootId,
+                OrderCreatedEvent.Occured(aggregateRootId,
                     Product.Prepare(1001, "Apple Mac Book Pro 13 inch no touchbar", 1, 43900),
                     ShippingInfo.Prepare("Jed", "0988123123", "Home address"))
             };

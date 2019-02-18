@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DDD.Example.LightShop.Cores.Events;
-using DDD.Example.LightShop.Cores.OrderDomain;
+using DDD.Example.LightShop.Cores.OrderContext;
 
 namespace DDD.Example.LightShop.Applications
 {

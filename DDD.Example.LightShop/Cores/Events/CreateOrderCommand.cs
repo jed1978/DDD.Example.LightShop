@@ -1,5 +1,5 @@
 using System;
-using DDD.Example.LightShop.Cores.OrderDomain;
+using DDD.Example.LightShop.Cores.OrderContext;
 
 namespace DDD.Example.LightShop.Cores.Events
 {
