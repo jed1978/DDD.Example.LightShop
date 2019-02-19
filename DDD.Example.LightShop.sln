@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Example.LightShop", "DDD.Example.LightShop\DDD.Example.LightShop.csproj", "{F64D2ED5-F24C-4D93-A857-73CF2D93DE7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Example.LightShop.Tests", "DDD.Example.LightShop.Tests\DDD.Example.LightShop.Tests.csproj", "{039015C5-2FF0-4B7E-A70E-70A47D1BEBEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F64D2ED5-F24C-4D93-A857-73CF2D93DE7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F64D2ED5-F24C-4D93-A857-73CF2D93DE7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F64D2ED5-F24C-4D93-A857-73CF2D93DE7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F64D2ED5-F24C-4D93-A857-73CF2D93DE7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{039015C5-2FF0-4B7E-A70E-70A47D1BEBEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{039015C5-2FF0-4B7E-A70E-70A47D1BEBEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{039015C5-2FF0-4B7E-A70E-70A47D1BEBEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{039015C5-2FF0-4B7E-A70E-70A47D1BEBEC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
