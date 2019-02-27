@@ -5,7 +5,12 @@ namespace DDD.Example.LightShop.OrderContext
 {
     public class Order
     {
-        public Order(Guid Id)
+        public static Order NewOrder(Guid Id)
+        {
+            return new Order(Id);
+        }
+
+        private Order(Guid Id)
         {
             this.Id = Id;
             UncommittedEvents = new Queue<OrderCreatedEvent>();
