@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DDD.Example.LightShop.OrderContext
 {
-    public class Order
+    public class Order : IAggregateRoot
     {
         public static Order NewOrder(Guid Id)
         {
