@@ -22,7 +22,11 @@ namespace DDD.Example.LightShop.OrderContext
 
         public void Create(List<Product> orderItems, ShippingInfo shippingInfo)
         {
-            var @event = new OrderCreatedEvent(Id, orderItems, shippingInfo);
+            ApplyChange(OrderCreatedEvent.NewOrderCreatedEvent(Id, orderItems, shippingInfo));
+        }
+
+        private void ApplyChange(OrderCreatedEvent @event)
+        {
             UncommittedEvents.Enqueue(@event);
         }
     }

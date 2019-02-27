@@ -6,6 +6,11 @@ namespace DDD.Example.LightShop.OrderContext
 {
     public class OrderCreatedEvent
     {
+        public static OrderCreatedEvent NewOrderCreatedEvent(Guid id, List<Product> orderItems, ShippingInfo shippingInfo)
+        {
+            return new OrderCreatedEvent(id, orderItems, shippingInfo);
+        }
+
         public Guid EventId { get; }
 
         public Guid AggregateRootId { get; }
@@ -15,9 +20,9 @@ namespace DDD.Example.LightShop.OrderContext
         public List<Product> OrderItems { get; }
         
         public ShippingInfo ShippingInfo { get; }
-        
-        
-        public OrderCreatedEvent(Guid id, List<Product> orderItems, ShippingInfo shippingInfo)
+
+
+        private OrderCreatedEvent(Guid id, List<Product> orderItems, ShippingInfo shippingInfo)
         {
             EventId = Guid.NewGuid();
             AggregateRootId = id;

@@ -30,6 +30,7 @@ namespace DDD.Example.LightShop.Tests.OrderContext
             var order = Order.NewOrder(Guid.NewGuid());
             order.Create(orderItems, shippingInfo);
  
+           
             order.UncommittedEvents.Should().NotBeEmpty();
             order.UncommittedEvents.FirstOrDefault()?.AggregateRootId.Should().Be(order.Id);
         }
