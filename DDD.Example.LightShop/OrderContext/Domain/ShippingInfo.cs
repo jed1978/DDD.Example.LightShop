@@ -1,4 +1,4 @@
-namespace DDD.Example.LightShop.OrderContext
+namespace DDD.Example.LightShop.OrderContext.Domain
 {
     public class ShippingInfo
     {

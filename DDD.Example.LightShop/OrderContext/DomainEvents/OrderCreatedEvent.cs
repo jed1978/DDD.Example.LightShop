@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using IdGen;
+using DDD.Example.LightShop.OrderContext.Domain;
 
-namespace DDD.Example.LightShop.OrderContext
+namespace DDD.Example.LightShop.OrderContext.DomainEvents
 {
     public class OrderCreatedEvent
     {

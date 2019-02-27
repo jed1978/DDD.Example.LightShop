@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DDD.Example.LightShop.OrderContext;
+using DDD.Example.LightShop.OrderContext.Domain;
 using FluentAssertions;
 using NUnit.Framework;
 
