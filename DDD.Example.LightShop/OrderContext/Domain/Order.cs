@@ -29,14 +29,25 @@ namespace DDD.Example.LightShop.OrderContext.Domain
             ApplyChange(OrderCreatedEvent.NewOrderCreatedEvent(Id, orderItems, shippingInfo));
         }
 
-        public void ApplyChange(IDomainEvent @event)
-        {
-            UncommittedEvents.Enqueue(@event);
-        }
-
         public void Commit()
         {
             UncommittedEvents.Clear();
+        }
+
+        public void Rebuild(IEnumerable<OrderCreatedEvent> historicalEvents)
+        {
+            foreach (var @event in historicalEvents)
+            {
+                ApplyChange(@event, true);
+            }
+        }
+
+        public void ApplyChange(IDomainEvent @event, bool isRebuild = false)
+        {
+            if (!isRebuild)
+            {
+                UncommittedEvents.Enqueue(@event);
+            }
         }
     }
 }

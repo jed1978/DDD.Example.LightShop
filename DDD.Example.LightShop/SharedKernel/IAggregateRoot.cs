@@ -8,7 +8,7 @@ namespace DDD.Example.LightShop.SharedKernel
     {
         Guid Id { get; }
         Queue<TDomainEvent> UncommittedEvents { get; }
-        void ApplyChange(TDomainEvent @event);
+        void ApplyChange(TDomainEvent @event, bool isRebuild);
         void Commit();
     }
 }
