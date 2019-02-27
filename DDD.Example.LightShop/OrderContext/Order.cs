@@ -29,5 +29,10 @@ namespace DDD.Example.LightShop.OrderContext
         {
             UncommittedEvents.Enqueue(@event);
         }
+
+        public void Commit()
+        {
+            UncommittedEvents.Clear();
+        }
     }
 }
