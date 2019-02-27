@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using DDD.Example.LightShop.OrderContext.Domain;
+using DDD.Example.LightShop.SharedKernel;
 
 namespace DDD.Example.LightShop.OrderContext.DomainEvents
 {
-    public class OrderCreatedEvent
+    public class OrderCreatedEvent : IDomainEvent
     {
         public static OrderCreatedEvent NewOrderCreatedEvent(Guid id, List<Product> orderItems, ShippingInfo shippingInfo)
         {

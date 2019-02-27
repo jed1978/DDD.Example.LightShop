@@ -16,12 +16,12 @@ namespace DDD.Example.LightShop.Tests.OrderContext
         {
             var (orderItems, shippingInfo) = Given_OrderDetailsWasPrepared();
 
-            var eventStoreRepository = Substitute.For<IRepository>();
-            var service = new OrderApplicationService(eventStoreRepository);
+            var orderRepository = Substitute.For<IRepository>();
+            var service = new OrderApplicationService(orderRepository);
 
             service.CreateOrder(orderItems, shippingInfo);
 
-            eventStoreRepository.Received(1).Save(Arg.Any<Order>());
+            orderRepository.Received(1).Save(Arg.Any<Order>());
         }
 
         private static (List<Product> orderItems, ShippingInfo shippingInfo) Given_OrderDetailsWasPrepared()
