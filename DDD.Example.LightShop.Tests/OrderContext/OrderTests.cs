@@ -9,7 +9,7 @@ namespace DDD.Example.LightShop.Tests.OrderContext
     public class OrderTests
     {
         [Test]
-        public void Test_CreateEmptyOrder()
+        public void Test_Construct_Order_with_GUID()
         {
             var orderId = Guid.NewGuid();
             var order = new Order(orderId);
