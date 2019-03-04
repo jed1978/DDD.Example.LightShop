@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DDD.Example.LightShop.OrderContext.Domain;
 using DDD.Example.LightShop.SharedKernel;
 
-namespace DDD.Example.LightShop.OrderContext.Application
+namespace DDD.Example.LightShop.OrderContext.Applications
 {
     public class OrderApplicationService
     {

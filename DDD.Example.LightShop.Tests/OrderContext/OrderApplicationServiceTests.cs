@@ -1,5 +1,4 @@
-using DDD.Example.LightShop.OrderContext;
-using DDD.Example.LightShop.OrderContext.Application;
+using DDD.Example.LightShop.OrderContext.Applications;
 using DDD.Example.LightShop.OrderContext.Domain;
 using DDD.Example.LightShop.SharedKernel;
 using NSubstitute;
