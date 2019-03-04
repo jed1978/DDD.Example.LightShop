@@ -19,7 +19,7 @@ namespace DDD.Example.LightShop.Infrastructure
             Handlers = new Dictionary<Type, List<IEventHandler<IDomainEvent>>>();
         }
 
-        public void Register<T>(IEventHandler<IDomainEvent> handler)
+        public virtual void Register<T>(IEventHandler<IDomainEvent> handler)
         {
             if (Handlers.ContainsKey(typeof(T)))
             {
@@ -34,7 +34,7 @@ namespace DDD.Example.LightShop.Infrastructure
             }
         }
 
-        public void Dispatch(IEnumerable<IDomainEvent> events)
+        public virtual void Dispatch(IEnumerable<IDomainEvent> events)
         {
 
             foreach (var @event in events)
