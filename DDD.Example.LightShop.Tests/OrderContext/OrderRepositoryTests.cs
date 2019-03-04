@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using DDD.Example.LightShop.Infrastructure;
 using DDD.Example.LightShop.OrderContext.Application;
 using DDD.Example.LightShop.OrderContext.Domain;
-using DDD.Example.LightShop.OrderContext.DomainEvents;
 using DDD.Example.LightShop.SharedKernel;
 using FluentAssertions;
 using NSubstitute;
@@ -41,7 +40,7 @@ namespace DDD.Example.LightShop.Tests.OrderContext
             var dispatcher = Substitute.For<IEventDispatcher>();
             var repository = new OrderRepository(dispatcher);
             repository.Save(order);
-            dispatcher.Received(1).Dispatch(Arg.Any<IEnumerable<OrderCreatedEvent>>());
+            dispatcher.Received(1).Dispatch(Arg.Any<IEnumerable<IDomainEvent>>());
         }
     }
 }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using DDD.Example.LightShop.OrderContext.DomainEvents;
 
 namespace DDD.Example.LightShop.SharedKernel
 {

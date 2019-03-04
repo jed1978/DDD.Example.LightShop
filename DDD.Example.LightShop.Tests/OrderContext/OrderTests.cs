@@ -26,9 +26,11 @@ namespace DDD.Example.LightShop.Tests.OrderContext
             
             var order = Order.NewOrder(Guid.NewGuid());
             order.Create(orderItems, shippingInfo);
-            
-            order.UncommittedEvents.Should().NotBeEmpty();
+
+            order.UncommittedEvents.Count.Should().Be(3);
             order.UncommittedEvents.FirstOrDefault()?.AggregateRootId.Should().Be(order.Id);
+            order.OrderItems.Should().BeEquivalentTo(orderItems);
+            order.ShippingInfo.Should().BeEquivalentTo(shippingInfo);
         }
 
         [Test]

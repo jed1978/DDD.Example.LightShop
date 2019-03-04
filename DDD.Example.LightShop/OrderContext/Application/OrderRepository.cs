@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using DDD.Example.LightShop.Infrastructure;
 using DDD.Example.LightShop.OrderContext.Domain;
-using DDD.Example.LightShop.OrderContext.DomainEvents;
 using DDD.Example.LightShop.SharedKernel;
 
 namespace DDD.Example.LightShop.OrderContext.Application
@@ -11,7 +10,7 @@ namespace DDD.Example.LightShop.OrderContext.Application
     public class OrderRepository : IRepository
     {
         private readonly IEventDispatcher _eventDispatcher;
-        private readonly Dictionary<Guid, Queue<OrderCreatedEvent>> _eventStore = new Dictionary<Guid, Queue<OrderCreatedEvent>>();
+        private readonly Dictionary<Guid, Queue<IDomainEvent>> _eventStore = new Dictionary<Guid, Queue<IDomainEvent>>();
 
         public OrderRepository(IEventDispatcher eventDispatcher)
         {
@@ -22,14 +21,14 @@ namespace DDD.Example.LightShop.OrderContext.Application
         {
             if (!_eventStore.ContainsKey(aggregateRoot.Id))
             {
-                _eventStore.Add(aggregateRoot.Id, new Queue<OrderCreatedEvent>());
+                _eventStore.Add(aggregateRoot.Id, new Queue<IDomainEvent>());
             }
             
-            var list = new List<OrderCreatedEvent>();
+            var list = new List<IDomainEvent>();
             
             while (aggregateRoot.UncommittedEvents.Count>0)
             {
-                var uncommittedEvent = aggregateRoot.UncommittedEvents.Dequeue() as OrderCreatedEvent;
+                var uncommittedEvent = aggregateRoot.UncommittedEvents.Dequeue();
                 _eventStore[aggregateRoot.Id].Enqueue(uncommittedEvent);
                 list.Add(uncommittedEvent);
             }
