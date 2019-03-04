@@ -15,7 +15,7 @@ namespace DDD.Example.LightShop.Tests.OrderContext
     public class OrderRepositoryTests 
     {
         [Test]
-        public void Test_Save_and_Load_Order()
+        public void Test_Order_Aggregate_can_be_Save_and_Load()
         {
             var (orderItems, shippingInfo) = OrderTestHelper.Given_OrderDetailsIsReady();
             var order = Order.NewOrder(Guid.NewGuid());
@@ -31,7 +31,7 @@ namespace DDD.Example.LightShop.Tests.OrderContext
         }
 
         [Test]
-        public void Test_Save_and_DispatchEvent()
+        public void Test_Dispatch_Events_after_Events_were_Persisted()
         {
             var (orderItems, shippingInfo) = OrderTestHelper.Given_OrderDetailsIsReady();
             var order = Order.NewOrder(Guid.NewGuid());
