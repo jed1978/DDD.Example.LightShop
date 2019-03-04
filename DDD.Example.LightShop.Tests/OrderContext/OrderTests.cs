@@ -17,13 +17,14 @@ namespace DDD.Example.LightShop.Tests.OrderContext
             var orderId = Guid.NewGuid();
             var order = Order.NewOrder(orderId);
             order.Id.Should().Be(orderId);
+            order.Subtotal.Should().Be(0);
         }
 
         [Test]
         public void Test_CreatOrder()
         {
             var (orderItems, shippingInfo) = OrderTestHelper.Given_OrderDetailsIsReady();
-            
+
             var order = Order.NewOrder(Guid.NewGuid());
             order.Create(orderItems, shippingInfo);
 
@@ -31,6 +32,7 @@ namespace DDD.Example.LightShop.Tests.OrderContext
             order.UncommittedEvents.FirstOrDefault()?.AggregateRootId.Should().Be(order.Id);
             order.OrderItems.Should().BeEquivalentTo(orderItems);
             order.ShippingInfo.Should().BeEquivalentTo(shippingInfo);
+            order.Subtotal.Should().Be(orderItems.Sum(p => p.UnitPrice));
         }
 
         [Test]
@@ -41,8 +43,9 @@ namespace DDD.Example.LightShop.Tests.OrderContext
             var order = OrderTestHelper.Given_OrderIsReady(orderItems, shippingInfo);
 
             order.Commit();
-            
+
             order.UncommittedEvents.Should().BeEmpty();
+            order.Subtotal.Should().Be(orderItems.Sum(p => p.UnitPrice));
         }
     }
 }
