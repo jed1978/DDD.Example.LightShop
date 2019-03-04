@@ -22,7 +22,7 @@ namespace DDD.Example.LightShop.Tests.OrderContext
         [Test]
         public void Test_CreatOrder()
         {
-            var (orderItems, shippingInfo) = Given_OrderDetailsWasPrepared();
+            var (orderItems, shippingInfo) = OrderTestHelper.Given_OrderDetailsIsReady();
             
             var order = Order.NewOrder(Guid.NewGuid());
             order.Create(orderItems, shippingInfo);
@@ -34,30 +34,13 @@ namespace DDD.Example.LightShop.Tests.OrderContext
         [Test]
         public void Test_CommitOrderChanges()
         {
-            var (orderItems, shippingInfo) = Given_OrderDetailsWasPrepared();
+            var (orderItems, shippingInfo) = OrderTestHelper.Given_OrderDetailsIsReady();
 
-            var order = Given_OrderWasPrepared(orderItems, shippingInfo);
+            var order = OrderTestHelper.Given_OrderIsReady(orderItems, shippingInfo);
 
             order.Commit();
             
             order.UncommittedEvents.Should().BeEmpty();
-        }
-
-        private static Order Given_OrderWasPrepared(List<Product> orderItems, ShippingInfo shippingInfo)
-        {
-            var order = Order.NewOrder(Guid.NewGuid());
-            order.Create(orderItems, shippingInfo);
-            return order;
-        }
-
-        private static (List<Product> orderItems, ShippingInfo shippingInfo) Given_OrderDetailsWasPrepared()
-        {
-            var orderItems = new List<Product>
-            {
-                Product.NewProduct(10001, "Apple Mac Book Pro 13 inch no touch bar", 43900m)
-            };
-            var shippingInfo = ShippingInfo.NewShippingInfo("王小明", "0988123567", "忠孝東路一段100號");
-            return (orderItems, shippingInfo);
         }
     }
 }
