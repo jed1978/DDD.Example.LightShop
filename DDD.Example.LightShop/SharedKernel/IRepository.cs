@@ -1,7 +1,7 @@
 namespace DDD.Example.LightShop.SharedKernel
 {
-    public interface IRepository
+    public interface IRepository<T> where T: EntityBase
     {
-        void Save(IAggregateRoot<IDomainEvent> aggregateRoot);
+        void Save(T entity);
     }
 }

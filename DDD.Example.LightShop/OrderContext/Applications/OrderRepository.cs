@@ -6,7 +6,7 @@ using DDD.Example.LightShop.SharedKernel;
 
 namespace DDD.Example.LightShop.OrderContext.Applications
 {
-    public class OrderRepository : IRepository
+    public class OrderRepository : IRepository<Order>
     {
         private readonly IEventDispatcher _eventDispatcher;
 
@@ -18,22 +18,22 @@ namespace DDD.Example.LightShop.OrderContext.Applications
             _eventDispatcher = eventDispatcher;
         }
 
-        public void Save(IAggregateRoot<IDomainEvent> aggregateRoot)
+        public void Save(Order entity)
         {
-            if (!_eventStore.ContainsKey(aggregateRoot.Id))
-                _eventStore.Add(aggregateRoot.Id, new Queue<IDomainEvent>());
+            if (!_eventStore.ContainsKey(entity.Id))
+                _eventStore.Add(entity.Id, new Queue<IDomainEvent>());
 
             var list = new List<IDomainEvent>();
 
-            while (aggregateRoot.UncommittedEvents.Count > 0)
+            while (entity.UncommittedEvents.Count > 0)
             {
-                var uncommittedEvent = aggregateRoot.UncommittedEvents.Dequeue();
-                _eventStore[aggregateRoot.Id].Enqueue(uncommittedEvent);
+                var uncommittedEvent = entity.UncommittedEvents.Dequeue();
+                _eventStore[entity.Id].Enqueue(uncommittedEvent);
                 list.Add(uncommittedEvent);
             }
 
             _eventDispatcher.Dispatch(list);
-            aggregateRoot.Commit();
+            entity.Commit();
         }
 
         public Order Load(Guid id)

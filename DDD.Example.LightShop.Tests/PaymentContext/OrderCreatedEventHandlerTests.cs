@@ -14,7 +14,7 @@ namespace DDD.Example.LightShop.Tests.PaymentContext
         [Test]
         public void Test_Should_Create_PaymentRecord_when_Handle_OrderCreatedEvent_()
         {
-            var repository = Substitute.For<IRepository>();
+            var repository = Substitute.For<IRepository<Payment>>();
             var handler = new OrderCreatedEventHandler(repository);
 
             handler.Handle(OrderCreatedEvent.NewOrderCreatedEvent(Guid.NewGuid(), 43900));

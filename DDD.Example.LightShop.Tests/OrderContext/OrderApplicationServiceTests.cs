@@ -14,7 +14,7 @@ namespace DDD.Example.LightShop.Tests.OrderContext
         {
             var (orderItems, shippingInfo) = OrderTestHelper.Given_OrderDetailsIsReady();
 
-            var orderRepository = Substitute.For<IRepository>();
+            var orderRepository = Substitute.For<IRepository<Order>>();
             var service = new OrderApplicationService(orderRepository);
 
             service.CreateOrder(orderItems, shippingInfo);

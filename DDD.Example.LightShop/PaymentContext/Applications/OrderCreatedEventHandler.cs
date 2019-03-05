@@ -7,9 +7,9 @@ namespace DDD.Example.LightShop.PaymentContext.Applications
 {
     public class OrderCreatedEventHandler : IEventHandler<OrderCreatedEvent>
     {
-        private readonly IRepository _repository;
+        private readonly IRepository<Payment> _repository;
 
-        public OrderCreatedEventHandler(IRepository repository)
+        public OrderCreatedEventHandler(IRepository<Payment> repository)
         {
             _repository = repository;
         }

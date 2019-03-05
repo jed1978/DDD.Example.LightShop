@@ -7,9 +7,9 @@ namespace DDD.Example.LightShop.OrderContext.Applications
 {
     public class OrderApplicationService
     {
-        private readonly IRepository _eventStoreRepository;
+        private readonly IRepository<Order> _eventStoreRepository;
 
-        public OrderApplicationService(IRepository eventStoreRepository)
+        public OrderApplicationService(IRepository<Order> eventStoreRepository)
         {
             _eventStoreRepository = eventStoreRepository;
         }

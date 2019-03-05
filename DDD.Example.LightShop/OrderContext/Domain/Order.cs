@@ -5,19 +5,15 @@ using DDD.Example.LightShop.SharedKernel;
 
 namespace DDD.Example.LightShop.OrderContext.Domain
 {
-    public class Order : IAggregateRoot<IDomainEvent>
+    public class Order : EntityBase, IAggregateRoot<IDomainEvent>
     {
-        public Guid Id { get; private set; }
-        public Queue<IDomainEvent> UncommittedEvents { get; }
         public List<Product> OrderItems { get; } = new List<Product>();
         public ShippingInfo ShippingInfo { get; private set; }
         public decimal Subtotal { get; private set; }
 
 
-        private Order(Guid Id)
+        private Order(Guid Id) : base(Id)
         {
-            this.Id = Id;
-            UncommittedEvents = new Queue<IDomainEvent>();
         }
 
         public static Order NewOrder(Guid Id)
@@ -38,28 +34,13 @@ namespace DDD.Example.LightShop.OrderContext.Domain
                 shippingInfo.ShippingAddress));
 
             ApplyChange(OrderCreatedEvent.NewOrderCreatedEvent(Id, subtotal));
+            
         }
 
-        public void Commit()
+        public override void ApplyChange(IDomainEvent @event, bool isRebuild = false)
         {
-            UncommittedEvents.Clear();
-        }
-
-        public void Rebuild(IEnumerable<IDomainEvent> historicalEvents)
-        {
-            foreach (var @event in historicalEvents)
-            {
-                ApplyChange(@event, true);
-            }
-        }
-
-        public void ApplyChange(IDomainEvent @event, bool isRebuild = false)
-        {
-            if (!isRebuild)
-            {
-                UncommittedEvents.Enqueue(@event);
-            }
-
+            base.ApplyChange(@event, isRebuild);
+            
             switch (@event)
             {
                 case OrderItemAddedEvent orderItemAdded:
