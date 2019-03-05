@@ -6,6 +6,11 @@ namespace DDD.Example.LightShop.PaymentContext.Domain
 {
     public class Payment : IAggregateRoot<IDomainEvent>
     {
+        public Payment(Guid id)
+        {
+            Id = id;
+        }
+
         public Guid Id { get; }
         public Queue<IDomainEvent> UncommittedEvents { get; }
 

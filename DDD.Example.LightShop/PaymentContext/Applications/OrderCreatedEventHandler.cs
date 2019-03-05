@@ -1,5 +1,6 @@
 using System;
 using DDD.Example.LightShop.DomainEvents;
+using DDD.Example.LightShop.PaymentContext.Domain;
 using DDD.Example.LightShop.SharedKernel;
 
 namespace DDD.Example.LightShop.PaymentContext.Applications
@@ -15,7 +16,9 @@ namespace DDD.Example.LightShop.PaymentContext.Applications
 
         public void Handle(OrderCreatedEvent domainEvent)
         {
-            throw new NotImplementedException();
+            var payment = new Payment(Guid.NewGuid());
+
+            _repository.Save(payment);
         }
     }
 }

@@ -12,7 +12,6 @@ namespace DDD.Example.LightShop.Tests.PaymentContext
     public class OrderCreatedEventHandlerTests
     {
         [Test]
-        [Ignore("Not implemented yet")]
         public void Test_Should_Create_PaymentRecord_when_Handle_OrderCreatedEvent_()
         {
             var repository = Substitute.For<IRepository>();
