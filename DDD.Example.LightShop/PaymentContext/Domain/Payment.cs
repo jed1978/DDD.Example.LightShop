@@ -7,15 +7,20 @@ namespace DDD.Example.LightShop.PaymentContext.Domain
 {
     public class Payment : EntityBase, IAggregateRoot<IDomainEvent>
     {
-        public Payment(Guid id) : base(id)
-        {
-        }
-
         public Guid OrderId { get; private set; }
         public decimal PayableAmount { get; private set; }
         public decimal PaidAmount { get; private set; }
         public PaymentState State { get; private set; }
 
+        public static Payment NewPayment(Guid id)
+        {
+            return new Payment(id);
+        }
+
+        private Payment(Guid id) : base(id)
+        {
+        }
+        
         public void CreatePayment(Guid orderId, decimal orderSubtotal)
         {
             var paymentRecordCreatedEvent = new PaymentRecordCreatedEvent(Id, orderId, orderSubtotal);

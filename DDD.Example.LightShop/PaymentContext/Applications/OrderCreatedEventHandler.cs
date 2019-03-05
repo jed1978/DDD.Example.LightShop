@@ -16,7 +16,7 @@ namespace DDD.Example.LightShop.PaymentContext.Applications
 
         public void Handle(OrderCreatedEvent domainEvent)
         {
-            var payment = new Payment(Guid.NewGuid());
+            var payment = Payment.NewPayment(Guid.NewGuid());
 
             _repository.Save(payment);
         }

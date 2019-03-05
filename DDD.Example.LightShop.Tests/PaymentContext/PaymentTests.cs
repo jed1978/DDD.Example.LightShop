@@ -13,7 +13,7 @@ namespace DDD.Example.LightShop.Tests.PaymentContext
         public void Test_CreatePayment_for_an_Order()
         {
             var id = Guid.NewGuid();
-            var payment = new Payment(id);
+            var payment = Payment.NewPayment(id);
             var orderId = Guid.NewGuid();
             var orderSubtotal = 43900m;
             
