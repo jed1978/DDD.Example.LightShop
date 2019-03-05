@@ -5,13 +5,13 @@ namespace DDD.Example.LightShop.DomainEvents.Order
 {
     public class OrderCreatedEvent : IDomainEvent
     {
-        public Guid EventId { get; }
+        public Guid EventId { get; private set; }
 
-        public Guid AggregateRootId { get; }
+        public Guid AggregateRootId { get; private set;}
 
-        public DateTime OccuredOn { get; }
+        public DateTime OccuredOn { get; private set;}
 
-        public decimal Subtotal { get; }
+        public decimal Subtotal { get; private set;}
 
         private OrderCreatedEvent(Guid orderId, decimal subtotal)
         {

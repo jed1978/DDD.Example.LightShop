@@ -20,11 +20,11 @@ namespace DDD.Example.LightShop.DomainEvents.Order
             ShippingAddress = shippingAddress;
         }
 
-        public Guid EventId { get; }
-        public Guid AggregateRootId { get; }
-        public string ContactName { get; }
-        public string ContactPhone { get; }
-        public string ShippingAddress { get; }
-        public DateTime OccuredOn { get; }
+        public Guid EventId { get; private set;}
+        public Guid AggregateRootId { get; private set;}
+        public string ContactName { get; private set;}
+        public string ContactPhone { get; private set;}
+        public string ShippingAddress { get; private set;}
+        public DateTime OccuredOn { get; private set;}
     }
 }

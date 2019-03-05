@@ -14,10 +14,10 @@ namespace DDD.Example.LightShop.DomainEvents.Payment
             PayableAmount = orderSubtotal;
         }
 
-        public Guid EventId { get; }
-        public Guid AggregateRootId { get; }
-        public Guid OrderId { get; }
-        public decimal PayableAmount { get; }
-        public DateTime OccuredOn { get; }
+        public Guid EventId { get; private set;}
+        public Guid AggregateRootId { get; private set;}
+        public Guid OrderId { get; private set;}
+        public decimal PayableAmount { get; private set;}
+        public DateTime OccuredOn { get; private set;}
     }
 }

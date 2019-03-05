@@ -20,11 +20,11 @@ namespace DDD.Example.LightShop.DomainEvents.Order
             OccuredOn = DateTime.Now;
         }
 
-        public Guid EventId { get; }
-        public Guid AggregateRootId { get; }
-        public int ProductId { get; }
-        public string ItemName { get; }
-        public decimal UnitPrice { get; }
-        public DateTime OccuredOn { get; }
+        public Guid EventId { get; private set;}
+        public Guid AggregateRootId { get; private set;}
+        public int ProductId { get; private set;}
+        public string ItemName { get; private set;}
+        public decimal UnitPrice { get; private set;}
+        public DateTime OccuredOn { get; private set;}
     }
 }
