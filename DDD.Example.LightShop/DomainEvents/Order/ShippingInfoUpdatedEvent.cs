@@ -1,11 +1,16 @@
 using System;
 using DDD.Example.LightShop.SharedKernel;
 
-namespace DDD.Example.LightShop.DomainEvents
+namespace DDD.Example.LightShop.DomainEvents.Order
 {
     public class ShippingInfoUpdatedEvent : IDomainEvent
     {
-        public ShippingInfoUpdatedEvent(Guid orderId, string contactName, string contactPhone, string shippingAddress)
+        public static ShippingInfoUpdatedEvent Raise(Guid orderId, string contactName, string contactPhone, string shippingAddress)
+        {
+            return new ShippingInfoUpdatedEvent(orderId, contactName, contactPhone, shippingAddress);
+        }
+
+        private ShippingInfoUpdatedEvent(Guid orderId, string contactName, string contactPhone, string shippingAddress)
         {
             EventId = Guid.NewGuid();
             OccuredOn = DateTime.Now;

@@ -1,5 +1,6 @@
 using System;
 using DDD.Example.LightShop.DomainEvents;
+using DDD.Example.LightShop.DomainEvents.Order;
 using DDD.Example.LightShop.PaymentContext.Applications;
 using DDD.Example.LightShop.PaymentContext.Domain;
 using DDD.Example.LightShop.SharedKernel;
@@ -17,7 +18,8 @@ namespace DDD.Example.LightShop.Tests.PaymentContext
             var repository = Substitute.For<IRepository<Payment>>();
             var handler = new OrderCreatedEventHandler(repository);
 
-            handler.Handle(OrderCreatedEvent.NewOrderCreatedEvent(Guid.NewGuid(), 43900));
+            handler.Handle(OrderCreatedEvent.Raise(Guid.NewGuid(), 43900));
+            
             repository.Received(1).Save(Arg.Any<Payment>());
         }
     }

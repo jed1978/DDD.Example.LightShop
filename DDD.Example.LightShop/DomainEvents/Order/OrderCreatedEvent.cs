@@ -1,7 +1,7 @@
 using System;
 using DDD.Example.LightShop.SharedKernel;
 
-namespace DDD.Example.LightShop.DomainEvents
+namespace DDD.Example.LightShop.DomainEvents.Order
 {
     public class OrderCreatedEvent : IDomainEvent
     {
@@ -21,7 +21,7 @@ namespace DDD.Example.LightShop.DomainEvents
             OccuredOn = DateTime.Now;
         }
 
-        public static OrderCreatedEvent NewOrderCreatedEvent(Guid orderId, decimal subtotal)
+        public static OrderCreatedEvent Raise(Guid orderId, decimal subtotal)
         {
             return new OrderCreatedEvent(orderId, subtotal);
         }

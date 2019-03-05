@@ -1,4 +1,5 @@
 using DDD.Example.LightShop.DomainEvents;
+using DDD.Example.LightShop.DomainEvents.Order;
 using DDD.Example.LightShop.PaymentContext.Applications;
 using DDD.Example.LightShop.SharedKernel;
 using NSubstitute;

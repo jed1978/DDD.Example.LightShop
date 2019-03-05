@@ -30,15 +30,13 @@ namespace DDD.Example.LightShop.PaymentContext.Domain
 
         public override void ApplyChange(IDomainEvent @event, bool isRebuild)
         {
-            base.ApplyChange(@event, isRebuild);
+            if (!(@event is PaymentRecordCreatedEvent paymentRecordCreated)) return;
+            OrderId = paymentRecordCreated.OrderId;
+            PayableAmount = paymentRecordCreated.PayableAmount;
+            PaidAmount = 0m;
+            State = PaymentState.Unpaid;
             
-            if (@event is PaymentRecordCreatedEvent paymentRecordCreated)
-            {
-                OrderId = paymentRecordCreated.OrderId;
-                PayableAmount = paymentRecordCreated.PayableAmount;
-                PaidAmount = 0m;
-                State = PaymentState.Unpaid;
-            }
+            base.ApplyChange(@event, isRebuild);
         }
     }
 }

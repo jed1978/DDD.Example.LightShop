@@ -1,5 +1,4 @@
 using System;
-using DDD.Example.LightShop.PaymentContext;
 using DDD.Example.LightShop.PaymentContext.Domain;
 using FluentAssertions;
 using NUnit.Framework;

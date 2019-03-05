@@ -1,11 +1,16 @@
 using System;
 using DDD.Example.LightShop.SharedKernel;
 
-namespace DDD.Example.LightShop.DomainEvents
+namespace DDD.Example.LightShop.DomainEvents.Order
 {
     public class OrderItemAddedEvent : IDomainEvent
     {
-        public OrderItemAddedEvent(Guid orderId, int productId, string itemName, decimal unitPrice)
+        public static OrderItemAddedEvent Raise(Guid orderId, int productId, string itemName, decimal unitPrice)
+        {
+            return new OrderItemAddedEvent(orderId, productId, itemName, unitPrice);
+        }
+
+        private OrderItemAddedEvent(Guid orderId, int productId, string itemName, decimal unitPrice)
         {
             AggregateRootId = orderId;
             ProductId = productId;

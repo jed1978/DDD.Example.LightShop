@@ -1,5 +1,6 @@
 using System;
 using DDD.Example.LightShop.DomainEvents;
+using DDD.Example.LightShop.DomainEvents.Order;
 using DDD.Example.LightShop.PaymentContext.Domain;
 using DDD.Example.LightShop.SharedKernel;
 

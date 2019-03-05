@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using DDD.Example.LightShop.DomainEvents;
+using DDD.Example.LightShop.DomainEvents.Order;
 using DDD.Example.LightShop.SharedKernel;
 
 namespace DDD.Example.LightShop.OrderContext.Domain
@@ -26,14 +27,14 @@ namespace DDD.Example.LightShop.OrderContext.Domain
             var subtotal = 0m;
             foreach (var item in orderItems)
             {
-                ApplyChange(new OrderItemAddedEvent(Id, item.Id, item.ItemName, item.UnitPrice));
+                ApplyChange(OrderItemAddedEvent.Raise(Id, item.Id, item.ItemName, item.UnitPrice));
                 subtotal += item.UnitPrice;
             }
 
-            ApplyChange(new ShippingInfoUpdatedEvent(Id, shippingInfo.ContactName, shippingInfo.ContactPhone,
+            ApplyChange(ShippingInfoUpdatedEvent.Raise(Id, shippingInfo.ContactName, shippingInfo.ContactPhone,
                 shippingInfo.ShippingAddress));
 
-            ApplyChange(OrderCreatedEvent.NewOrderCreatedEvent(Id, subtotal));
+            ApplyChange(OrderCreatedEvent.Raise(Id, subtotal));
             
         }
 

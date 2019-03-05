@@ -6,7 +6,7 @@ namespace DDD.Example.LightShop.Infrastructure
 {
     public class EventDispatcher : IEventDispatcher
     {
-        private static readonly Dictionary<Type, List<IEventHandler<IDomainEvent>>> Handlers;
+        private readonly Dictionary<Type, List<IEventHandler<IDomainEvent>>> _handlers;
         private static readonly Lazy<EventDispatcher> LazyEventDispatcher = new Lazy<EventDispatcher>(() => new EventDispatcher());
 
         public static EventDispatcher Instance()
@@ -14,35 +14,32 @@ namespace DDD.Example.LightShop.Infrastructure
             return LazyEventDispatcher.Value;
         }
 
-        static EventDispatcher()
+        private EventDispatcher()
         {
-            Handlers = new Dictionary<Type, List<IEventHandler<IDomainEvent>>>();
+            _handlers = new Dictionary<Type, List<IEventHandler<IDomainEvent>>>();
         }
 
-        public virtual void Register<T>(IEventHandler<IDomainEvent> handler)
+        public void Register<T>(IEventHandler<IDomainEvent> handler)
         {
-            if (Handlers.ContainsKey(typeof(T)))
+            if (_handlers.ContainsKey(typeof(T)))
             {
-                if (!Handlers[typeof(T)].Exists(m => m.GetType() == Handlers.GetType()))
+                if (!_handlers[typeof(T)].Exists(m => m.GetType() == _handlers.GetType()))
                 {
-                    Handlers[typeof(T)].Add(handler);
+                    _handlers[typeof(T)].Add(handler);
                 }
             }
             else
             {
-                Handlers.Add(typeof(T), new List<IEventHandler<IDomainEvent>> {handler});
+                _handlers.Add(typeof(T), new List<IEventHandler<IDomainEvent>> {handler});
             }
         }
 
-        public virtual void Dispatch(IEnumerable<IDomainEvent> events)
+        public void Dispatch(IEnumerable<IDomainEvent> events)
         {
-
             foreach (var @event in events)
             {
-                Handlers[@event.GetType()].ForEach(handler => handler.Handle(@event));
+                _handlers[@event.GetType()].ForEach(handler => handler.Handle(@event));
             }
         }
-
-
     }
 }
